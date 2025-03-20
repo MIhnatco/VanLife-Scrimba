@@ -2,23 +2,21 @@ import { Routes, Route, Link } from "react-router-dom";
 
 import "./App.css";
 
+import Header from "./components/Header";
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 
 function App() {
   return (
-    <>
-      <header className="h-28 flex items-center py-2.5 px-8">
-        <Link to="/">#VANLIFE</Link>
-        <nav>
-          <Link to="/about">About</Link>
-        </nav>
-      </header>
+    <article className="w-260 mx-auto bg-[#fff7ed]">
+      <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
       </Routes>
-    </>
+    </article>
   );
 }
 
