@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function Vans() {
   const [vans, setVans] = React.useState([]);
 
@@ -17,25 +17,31 @@ function Vans() {
 
   const vanElements = vans.map((van) => (
     <div key={van.id} className="text-[#161616] my-8">
-      <img
-        src={van.imageUrl}
-        className="max-w-full rounded-xl"
-        alt={`Image of ${van.name}`}
-      />
-      <div className="van-info">
-        <h3 className="text-3xl font-bold my-8">{van.name}</h3>
-        <p className="text-xl font-medium my-4">
-          ${van.price}
-          <span>/day</span>
-        </p>
-      </div>
-      <i
-        className={`h-9 py-1.5 px-7 rounded-md transition duration-200 ease-[cubic-bezier(0.4,0.05,0.2,1)] text-[#ffead0] cursor-pointer ${
-          van.type
-        } ${bgColors[van.type]} selected`}
+      <Link
+        to={`/vans/${van.id}`}
+        aria-label={`View details for ${van.name}, 
+            priced at $${van.price} per day`}
       >
-        {van.type}
-      </i>
+        <img
+          src={van.imageUrl}
+          className="max-w-full rounded-xl"
+          alt={`Image of ${van.name}`}
+        />
+        <div className="van-info">
+          <h3 className="text-3xl font-bold my-8">{van.name}</h3>
+          <p className="text-xl font-medium my-4">
+            ${van.price}
+            <span>/day</span>
+          </p>
+        </div>
+        <i
+          className={`h-9 py-1.5 px-7 rounded-md transition duration-200 ease-[cubic-bezier(0.4,0.05,0.2,1)] text-[#ffead0] cursor-pointer ${
+            van.type
+          } ${bgColors[van.type]} selected`}
+        >
+          {van.type}
+        </i>
+      </Link>
     </div>
   ));
 
