@@ -2,8 +2,7 @@ import { Routes, Route, Link } from "react-router-dom";
 
 import "./App.css";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Layout from "./components/Layout";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -15,16 +14,14 @@ import "../server";
 function App() {
   return (
     <article className="w-260 mx-auto bg-[#fff7ed]">
-      <Header />
-
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/vans" element={<Vans />} />
-        <Route path="/vans/:id" element={<VanDetail />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="vans" element={<Vans />} />
+          <Route path="vans/:id" element={<VanDetail />} />
+        </Route>
       </Routes>
-
-      <Footer />
     </article>
   );
 }
