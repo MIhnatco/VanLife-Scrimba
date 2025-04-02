@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -10,25 +10,37 @@ function Header() {
         #VANLIFE
       </Link>
       <nav className="flex gap-4">
-        <Link
-          className="text-[#4d4d4d] font-semibold hover:text-[#161616] hover:underline hover:underline-offset-6"
+        <NavLink
           to="/host"
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold underline underline-offset-4 text-amber-800 py-2 px-4.5"
+              : "text-[#4d4d4d] hover:text-[#161616] hover:underline hover:underline-offset-4 font-semibold py-2 px-4.5 "
+          }
         >
           Host
-        </Link>
+        </NavLink>
 
-        <Link
-          className="text-[#4d4d4d] font-semibold hover:text-[#161616] hover:underline hover:underline-offset-6"
+        <NavLink
           to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold underline underline-offset-4 text-amber-800 py-2 px-4.5"
+              : "text-[#4d4d4d] hover:text-[#161616] hover:underline hover:underline-offset-4 font-semibold py-2 px-4.5 "
+          }
         >
           About
-        </Link>
-        <Link
-          className="text-[#4d4d4d] font-semibold hover:text-[#161616] hover:underline hover:underline-offset-6"
+        </NavLink>
+        <NavLink
           to="/vans"
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold underline underline-offset-4 text-amber-800 py-2 px-4.5"
+              : "text-[#4d4d4d] hover:text-[#161616] hover:underline hover:underline-offset-4 font-semibold py-2 px-4.5 "
+          }
         >
           Vans
-        </Link>
+        </NavLink>
       </nav>
     </header>
   );
