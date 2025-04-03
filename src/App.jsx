@@ -30,7 +30,7 @@ function App() {
           <Route path="/host" element={<HostLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="income" element={<Income />} />
-            <Route path="review" element={<Review />} />
+            <Route path="reviews" element={<Review />} />
           </Route>
         </Route>
       </Routes>
