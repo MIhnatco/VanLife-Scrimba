@@ -27,6 +27,13 @@ function HostLayout() {
         </NavLink>
         <NavLink
           className="hover:text-[#161616] hover:underline hover:underline-offset-6"
+          to="vans"
+          style={({ isActive }) => (isActive ? activeStyle : null)}
+        >
+          Vans
+        </NavLink>
+        <NavLink
+          className="hover:text-[#161616] hover:underline hover:underline-offset-6"
           to="reviews"
           style={({ isActive }) => (isActive ? activeStyle : null)}
         >
