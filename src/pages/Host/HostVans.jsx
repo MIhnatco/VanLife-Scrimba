@@ -15,16 +15,14 @@ function HostVans() {
       key={van.id}
       className="flex my-4 p-4 bg-white"
     >
-      <div key={van.id}>
-        <img
-          src={van.imageUrl}
-          className="w-32 rounded-xl"
-          alt={`Image of ${van.name}`}
-        />
-        <div className="ml-8">
-          <h3 className="text-3xl font-bold my-8">{van.name}</h3>
-          <p className="text-xl font-medium my-4">${van.price}/day</p>
-        </div>
+      <img
+        src={van.imageUrl}
+        className="w-32 rounded-xl"
+        alt={`Image of ${van.name}`}
+      />
+      <div className="ml-8">
+        <h3 className="text-3xl font-bold my-8">{van.name}</h3>
+        <p className="text-xl font-medium my-4">${van.price}/day</p>
       </div>
     </Link>
   ));
