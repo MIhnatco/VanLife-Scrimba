@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function HostVansDetail() {
   const { id } = useParams();
@@ -24,6 +24,13 @@ function HostVansDetail() {
 
   return (
     <section className="px-8">
+      <Link
+        to=".."
+        relative="path"
+        className="block text-black text-xl mt-8 ml-7"
+      >
+        &larr; Back to all vans
+      </Link>
       {currentVan && (
         <article className="bg-white p-4 my-8">
           <div className="flex gap-4 my-8">
@@ -38,7 +45,9 @@ function HostVansDetail() {
                 {currentVan.type}
               </p>
               <h2 className="text-2xl font-bold my-2">{currentVan.name}</h2>
-              <p className="text-xl">${currentVan.price}/day</p>
+              <p className="text-xl">
+                <span className="font-bold">${currentVan.price}</span>/day
+              </p>
             </div>
           </div>
         </article>
