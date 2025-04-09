@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Outlet } from "react-router-dom";
 
 function HostVansDetail() {
   const { id } = useParams();
@@ -50,6 +50,8 @@ function HostVansDetail() {
               </p>
             </div>
           </div>
+
+          <Outlet />
         </article>
       )}
     </section>
