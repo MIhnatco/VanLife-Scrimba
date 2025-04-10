@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link, Outlet } from "react-router-dom";
+import { useParams, Link, Outlet, NavLink } from "react-router-dom";
 
 function HostVansDetail() {
   const { id } = useParams();
@@ -10,6 +10,18 @@ function HostVansDetail() {
     simple: "bg-[#e17654] hover:bg-[#ff7f50]",
     rugged: "bg-[#115e59] hover:bg-[#0d4d4a]",
     luxury: "bg-[#161616] hover:bg-[#333333]",
+  };
+
+  const activeStyle = {
+    fontWeight: "bold",
+    textDecoration: "underline",
+    color: "#161616",
+    textUnderlineOffset: "4px",
+  };
+
+  const passiveStyle = {
+    color: "#4D4D4D",
+    fontWeight: "bold",
   };
 
   React.useEffect(() => {
@@ -50,6 +62,28 @@ function HostVansDetail() {
               </p>
             </div>
           </div>
+
+          <nav className="max-w-2/3 flex gap-8 text-xl">
+            <NavLink
+              style={({ isActive }) => (isActive ? activeStyle : passiveStyle)}
+              to="."
+              end
+            >
+              Info
+            </NavLink>
+            <NavLink
+              style={({ isActive }) => (isActive ? activeStyle : passiveStyle)}
+              to="pricing"
+            >
+              Price
+            </NavLink>
+            <NavLink
+              style={({ isActive }) => (isActive ? activeStyle : passiveStyle)}
+              to="photos"
+            >
+              Photos
+            </NavLink>
+          </nav>
 
           <Outlet />
         </article>
