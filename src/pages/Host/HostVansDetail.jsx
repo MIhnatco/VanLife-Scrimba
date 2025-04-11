@@ -85,7 +85,7 @@ function HostVansDetail() {
             </NavLink>
           </nav>
 
-          <Outlet />
+          <Outlet context={{currentVan}}/>
         </article>
       )}
     </section>
