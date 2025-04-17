@@ -21,6 +21,7 @@ function Vans() {
   const displayedVans = typeFilter
     ? vans.filter((van) => van.type === typeFilter)
     : vans;
+
   const vanElements = displayedVans.map((van) => (
     <div key={van.id} className="text-[#161616] my-8">
       <Link
@@ -54,6 +55,46 @@ function Vans() {
   return (
     <article className="px-6 my-5">
       <h1 className="text-4xl font-extrabold my-4">Explore our van options</h1>
+
+      <div>
+        <Link
+          className={`h-8 py-1.5 px-6 font-medium rounded-md transition-all duration-200 ease-in-out mr-2 ${
+            typeFilter === "simple"
+              ? "bg-[#E17654] text-[#ffead0]"
+              : "bg-[#ffead0] text-[#4d4d4d] hover:bg-[#E17654] hover:text-[#ffead0]"
+          }`}
+          to="?type=simple"
+        >
+          Simple
+        </Link>
+        <Link
+          className={`h-8 py-1.5 px-6 font-medium rounded-md transition-all duration-200 ease-in-out mr-2 ${
+            typeFilter === "rugged"
+              ? "bg-[#115e59] text-[#ffead0]"
+              : "bg-[#ffead0] text-[#4d4d4d] hover:bg-[#115e59] hover:text-[#ffead0]"
+          }`}
+          to="?type=rugged"
+        >
+          Rugged
+        </Link>
+        <Link
+          className={`h-8 py-1.5 px-6 font-medium rounded-md transition-all duration-200 ease-in-out mr-2 ${
+            typeFilter === "luxury"
+              ? "bg-[#161616] text-[#ffead0]"
+              : "bg-[#ffead0] text-[#4d4d4d] hover:bg-[#161616] hover:text-[#ffead0]"
+          }`}
+          to="?type=luxury"
+        >
+          Luxury
+        </Link>
+        <Link
+          className={`h-8 py-1.5 px-6 font-medium rounded-md bg-[#ffead0] text-[#4d4d4d] transition-all duration-200 ease-in-out hover:text-[#ffead0] hover:bg-[#f00] mr-2`}
+          to="."
+        >
+          Clear filter
+        </Link>
+      </div>
+
       <section className="grid grid-cols-2 justify-center gap-8 mt-14">
         {vanElements}
       </section>
