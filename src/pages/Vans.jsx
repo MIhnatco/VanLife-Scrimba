@@ -1,5 +1,8 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
+
+import { handleFilterChange } from "../utils/handleFilterChange";
+
 function Vans() {
   const [vans, setVans] = React.useState([]);
 
@@ -52,6 +55,11 @@ function Vans() {
     </div>
   ));
 
+  //Filtering URL search parameters
+  const onFilterChange = (key, value) => {
+    handleFilterChange(key, value, setSearchParams);
+  };
+
   return (
     <article className="px-6 my-5">
       <h1 className="text-4xl font-extrabold my-4">Explore our van options</h1>
@@ -63,7 +71,7 @@ function Vans() {
               ? "bg-[#E17654] text-[#ffead0]"
               : "bg-[#ffead0] text-[#4d4d4d] hover:bg-[#E17654] hover:text-[#ffead0]"
           }`}
-          onClick={() => setSearchParams({ type: "simple" })}
+          onClick={() => onFilterChange("type", "simple")}
         >
           Simple
         </button>
@@ -73,7 +81,7 @@ function Vans() {
               ? "bg-[#115e59] text-[#ffead0]"
               : "bg-[#ffead0] text-[#4d4d4d] hover:bg-[#115e59] hover:text-[#ffead0]"
           }`}
-          onClick={() => setSearchParams({ type: "rugged" })}
+          onClick={() => onFilterChange("type", "rugged")}
         >
           Rugged
         </button>
@@ -83,13 +91,13 @@ function Vans() {
               ? "bg-[#161616] text-[#ffead0]"
               : "bg-[#ffead0] text-[#4d4d4d] hover:bg-[#161616] hover:text-[#ffead0]"
           }`}
-          onClick={() => setSearchParams({ type: "luxury" })}
+          onClick={() => onFilterChange("type", "luxury")}
         >
           Luxury
         </button>
         <button
           className={`py-1.5 px-6 font-medium rounded-md bg-[#ffead0] text-[#4d4d4d] transition-all duration-200 ease-in-out hover:text-[#ffead0] hover:bg-[#f00] mr-2`}
-          onClick={() => setSearchParams({})}
+          onClick={() => onFilterChange("type", null)}
         >
           Clear filter
         </button>
