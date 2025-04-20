@@ -95,12 +95,14 @@ function Vans() {
         >
           Luxury
         </button>
-        <button
-          className={`py-1.5 px-6 font-medium rounded-md bg-[#ffead0] text-[#4d4d4d] transition-all duration-200 ease-in-out hover:text-[#ffead0] hover:bg-[#f00] mr-2`}
-          onClick={() => onFilterChange("type", null)}
-        >
-          Clear filter
-        </button>
+        {typeFilter ? (
+          <button
+            className={`py-1.5 px-6 font-medium rounded-md bg-[#ffead0] text-[#4d4d4d] transition-all duration-200 ease-in-out hover:text-[#ffead0] hover:bg-[#f00] mr-2`}
+            onClick={() => onFilterChange("type", null)}
+          >
+            Clear filter
+          </button>
+        ) : null}
       </div>
 
       <section className="grid grid-cols-2 justify-center gap-8 mt-14">
