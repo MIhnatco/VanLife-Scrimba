@@ -39,7 +39,7 @@ function HostVansDetail() {
       <Link
         to=".."
         relative="path"
-        className="block text-black text-xl mt-8 ml-7"
+        className="block text-black text-xl mt-8 ml-7 hover:underline hover:underline-offset-2 hover:font-bold"
       >
         &larr; Back to all vans
       </Link>
@@ -85,7 +85,7 @@ function HostVansDetail() {
             </NavLink>
           </nav>
 
-          <Outlet context={{currentVan}}/>
+          <Outlet context={{ currentVan }} />
         </article>
       )}
     </section>

@@ -28,9 +28,10 @@ function Vans() {
   const vanElements = displayedVans.map((van) => (
     <div key={van.id} className="text-[#161616] my-8">
       <Link
-        to={`/vans/${van.id}`}
+        to={van.id}
         aria-label={`View details for ${van.name}, 
             priced at $${van.price} per day`}
+        state={{search: searchParams.toString()}}
       >
         <img
           src={van.imageUrl}

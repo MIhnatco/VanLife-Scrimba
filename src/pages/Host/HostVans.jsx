@@ -10,11 +10,7 @@ function HostVans() {
   }, []);
 
   const hostVansElements = vans.map((van) => (
-    <Link
-      to={`/host/vans/${van.id}`}
-      key={van.id}
-      className="flex my-4 p-4 bg-white"
-    >
+    <Link to={van.id} key={van.id} className="flex my-4 p-4 bg-white">
       <img
         src={van.imageUrl}
         className="w-32 rounded-xl"

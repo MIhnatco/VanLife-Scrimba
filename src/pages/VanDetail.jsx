@@ -1,10 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 
 function VanDetail() {
   const [van, setVan] = React.useState(null);
-
   const params = useParams();
+
+  const location = useLocation();
 
   const bgColors = {
     simple: "bg-[#e17654] hover:bg-[#ff7f50]",
@@ -20,6 +21,14 @@ function VanDetail() {
 
   return (
     <section className="px-8">
+      <Link
+        to={location.state ? `..?${location.state.search}` : ".."}
+        relative="path"
+        className="block text-black text-xl mt-8 ml-7 hover:underline hover:underline-offset-2 hover:font-bold"
+      >
+        &larr; Back to all vans
+      </Link>
+
       {van ? (
         <div className="flex flex-col text-[#161616] mb-8">
           <img
