@@ -31,7 +31,7 @@ function Vans() {
         to={van.id}
         aria-label={`View details for ${van.name}, 
             priced at $${van.price} per day`}
-        state={{search: searchParams.toString()}}
+        state={{ search: searchParams.toString(), type: typeFilter }}
       >
         <img
           src={van.imageUrl}

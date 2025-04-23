@@ -19,6 +19,8 @@ function VanDetail() {
       .then((info) => setVan(info.vans));
   }, [params.id]);
 
+  const type = location.state?.type || "all";
+
   return (
     <section className="px-8">
       <Link
@@ -26,7 +28,7 @@ function VanDetail() {
         relative="path"
         className="block text-black text-xl mt-8 ml-7 hover:underline hover:underline-offset-2 hover:font-bold"
       >
-        &larr; Back to all vans
+        &larr; {`Back to ${type} vans`}
       </Link>
 
       {van ? (
