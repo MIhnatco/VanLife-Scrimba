@@ -3,6 +3,8 @@ import { Link, useSearchParams } from "react-router-dom";
 
 import { handleFilterChange } from "../utils/handleFilterChange";
 
+import { getVans } from "../api";
+
 function Vans() {
   const [vans, setVans] = React.useState([]);
 
@@ -16,9 +18,12 @@ function Vans() {
   };
 
   React.useEffect(() => {
-    fetch("/api/vans")
-      .then((resp) => resp.json())
-      .then((data) => setVans(data.vans));
+    async function loadVans() {
+      const data = await getVans();
+      setVans(data);
+    }
+
+    loadVans();
   }, []);
 
   const displayedVans = typeFilter
