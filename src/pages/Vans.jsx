@@ -5,8 +5,12 @@ import { handleFilterChange } from "../utils/handleFilterChange";
 
 import { getVans } from "../api";
 
+import Spinner from "../utils/Spinner";
+
 function Vans() {
   const [vans, setVans] = React.useState([]);
+
+  const [loading, setLoading] = React.useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
@@ -19,8 +23,10 @@ function Vans() {
 
   React.useEffect(() => {
     async function loadVans() {
+      setLoading(true);
       const data = await getVans();
       setVans(data);
+      setLoading(false);
     }
 
     loadVans();
@@ -65,6 +71,10 @@ function Vans() {
   const onFilterChange = (key, value) => {
     handleFilterChange(key, value, setSearchParams);
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <article className="px-6 my-5">
