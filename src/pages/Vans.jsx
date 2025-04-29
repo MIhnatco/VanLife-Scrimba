@@ -47,7 +47,7 @@ function Vans() {
   return loading ? (
     <Spinner />
   ) : error ? (
-    <h1>There was an error: {error.message}</h1>
+    <h1 aria-live="assertive">There was an error: {error.message}</h1>
   ) : (
     (() => {
       const displayedVans = typeFilter

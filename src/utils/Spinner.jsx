@@ -5,6 +5,7 @@ function Spinner() {
         className="w-24 h-24 border-8 border-gray-300 border-t-[#e17654] rounded-full animate-spin"
         role="status"
         aria-label="Loading spinner"
+        aria-live="polite"
       ></div>
     </div>
   );

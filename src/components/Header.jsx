@@ -6,10 +6,11 @@ function Header() {
       <Link
         className="text-black mr-auto uppercase font-black text-2xl letter-wider"
         to="/"
+        aria-label="VanLife logo"
       >
         #VANLIFE
       </Link>
-      <nav className="flex gap-4">
+      <nav className="flex gap-4" aria-label="Main Navigation">
         <NavLink
           to="/host"
           className={({ isActive }) =>
