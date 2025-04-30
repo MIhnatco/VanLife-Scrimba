@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 
+import avatarUrl from "../assets/images/avatar-icon.png";
+
 function Header() {
   return (
     <header className="h-28 flex items-center py-2.5 px-8 text-xl">
@@ -42,6 +44,10 @@ function Header() {
         >
           Vans
         </NavLink>
+
+        <Link to="login">
+          <img src={avatarUrl} />
+        </Link>
       </nav>
     </header>
   );
