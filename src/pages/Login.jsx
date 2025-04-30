@@ -24,8 +24,11 @@ function Login() {
     }));
   }
   return (
-    <article className="flex flex-col items-center px-7">
-      <h1 className="text-xl md:text-3xl text-center my-8">
+    <article
+      className="flex flex-col items-center px-7"
+      aria-labelledby="page-title"
+    >
+      <h1 className="text-xl md:text-3xl text-center my-8" id="page-title">
         Sign in to your account!
       </h1>
 
@@ -48,7 +51,11 @@ function Login() {
           onChange={handleChange}
         />
 
-        <button className="bg-[#FF8c38] border-none rounded-md h-14 mt-6 text-white">
+        <button
+          className="bg-[#FF8c38] border-none rounded-md h-14 mt-6 text-white"
+          aria-label="Log in to your account"
+          aria-live="polite"
+        >
           Log in
         </button>
       </form>
