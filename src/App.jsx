@@ -24,6 +24,8 @@ import HostVanPricing from "./pages/Host/HostVanPricing";
 
 import NotFound from "./pages/NotFound";
 
+import AuthRequired from "./components/AuthRequired";
+
 import "../server";
 
 function App() {
@@ -38,16 +40,18 @@ function App() {
 
           <Route path="login" element={<Login />} />
 
-          <Route path="/host" element={<HostLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="income" element={<Income />} />
-            <Route path="vans" element={<HostVans />} />
-            <Route path="vans/:id" element={<HostVansDetail />}>
-              <Route index element={<HostVanInfo />} />
-              <Route path="pricing" element={<HostVanPricing />} />
-              <Route path="photos" element={<HostVanPhotos />} />
+          <Route element={<AuthRequired />}>
+            <Route path="/host" element={<HostLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="income" element={<Income />} />
+              <Route path="vans" element={<HostVans />} />
+              <Route path="vans/:id" element={<HostVansDetail />}>
+                <Route index element={<HostVanInfo />} />
+                <Route path="pricing" element={<HostVanPricing />} />
+                <Route path="photos" element={<HostVanPhotos />} />
+              </Route>
+              <Route path="reviews" element={<Review />} />
             </Route>
-            <Route path="reviews" element={<Review />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
