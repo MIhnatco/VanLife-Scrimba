@@ -1,10 +1,14 @@
 import React from "react";
 
+import { useLocation } from "react-router";
+
 function Login() {
   const [loginFormData, setLoginFormData] = React.useState({
     email: "",
     password: "",
   });
+
+  const location = useLocation();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -28,6 +32,11 @@ function Login() {
       className="flex flex-col items-center px-7"
       aria-labelledby="page-title"
     >
+      {location.state?.message && (
+        <h3 className="text-lg md:text-xl font-bold text-center text-red-600">
+          {location.state.message}
+        </h3>
+      )}
       <h1 className="text-xl md:text-3xl text-center my-8" id="page-title">
         Sign in to your account!
       </h1>
