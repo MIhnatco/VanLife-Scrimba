@@ -41,7 +41,10 @@ function VanDetail() {
   const type = location.state?.type || "all";
 
   return loading ? (
-    <Spinner />
+    <div aria-live="polite" role="status">
+      <Spinner />
+      <span className="sr-only">Please wait while we fetch van details</span>
+    </div>
   ) : error ? (
     <h1 className="text-2xl text-red-600" aria-live="assertive">
       There was an error: {error.message}
