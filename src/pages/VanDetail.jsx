@@ -1,8 +1,16 @@
 import React from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 
+import Spinner from "../utils/Spinner";
+
+import { getVans } from "../api";
+
 function VanDetail() {
   const [van, setVan] = React.useState(null);
+
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
+
   const params = useParams();
 
   const location = useLocation();
@@ -14,14 +22,31 @@ function VanDetail() {
   };
 
   React.useEffect(() => {
-    fetch(`/api/vans/${params.id}`)
-      .then((resp) => resp.json())
-      .then((info) => setVan(info.vans));
+    async function loadVans() {
+      setLoading(true);
+
+      try {
+        const data = await getVans(params.id);
+        setVan(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadVans();
   }, [params.id]);
 
   const type = location.state?.type || "all";
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : error ? (
+    <h1 className="text-2xl text-red-600" aria-live="assertive">
+      There was an error: {error.message}
+    </h1>
+  ) : (
     <section
       className="px-8"
       aria-labelledby={van ? "van-detail-title" : "loading-indicator"}
@@ -36,7 +61,7 @@ function VanDetail() {
         </Link>
       </nav>
 
-      {van ? (
+      {van && (
         <article className="flex flex-col text-[#161616] mb-8">
           <img
             src={van.imageUrl}
@@ -72,18 +97,6 @@ function VanDetail() {
             Rent this van.
           </button>
         </article>
-      ) : (
-        <div
-          role="status"
-          aria-live="polite"
-          id="loading-indicator"
-          className="text-center py-8"
-        >
-          <p>Loading...</p>
-          <span className="sr-only">
-            Please wait while we fetch van details
-          </span>
-        </div>
       )}
     </section>
   );
