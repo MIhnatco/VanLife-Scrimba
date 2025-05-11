@@ -1,12 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import Spinner from "../../utils/Spinner";
+
+import { getHostVans } from "../../api";
+
 function HostVans() {
   const [vans, setVans] = React.useState([]);
 
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
+
   React.useEffect(() => {
-    fetch("/api/host/vans")
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans));
+    async function loadVans() {
+      setLoading(true);
+
+      try {
+        const data = await getHostVans();
+        setVans(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadVans();
   }, []);
 
   const hostVansElements = vans.map((van) => (
@@ -26,10 +45,20 @@ function HostVans() {
   return (
     <section className="p-4">
       <h1 className="text-4xl font-bold my-6">Your listed vans</h1>
-      {vans.length > 0 ? (
-        <section>{hostVansElements}</section>
+
+      {loading ? (
+        <div aria-live="polite" role="status">
+          <Spinner />
+          <span className="sr-only">
+            Please wait while we fetch your listed vans.
+          </span>
+        </div>
+      ) : error ? (
+        <h1 className="text-2xl text-red-600" aria-live="assertive">
+          There was an error: {error.message}
+        </h1>
       ) : (
-        <h2>Loading...</h2>
+        <section>{hostVansElements}</section>
       )}
     </section>
   );
