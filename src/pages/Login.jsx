@@ -2,6 +2,8 @@ import React from "react";
 
 import { useLocation } from "react-router";
 
+import { loginUser } from "../api";
+
 function Login() {
   const [loginFormData, setLoginFormData] = React.useState({
     email: "",
@@ -12,7 +14,7 @@ function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(loginFormData);
+    loginUser(loginFormData).then((data) => console.log(data));
 
     setLoginFormData({
       email: "",
@@ -61,7 +63,7 @@ function Login() {
         />
 
         <button
-          className="bg-[#FF8c38] border-none rounded-md h-14 mt-6 text-white"
+          className="bg-[#FF8c38] border-none rounded-md h-14 mt-6 text-white hover:cursor-pointer"
           aria-label="Log in to your account"
           aria-live="polite"
         >
