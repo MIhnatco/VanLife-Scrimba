@@ -4,17 +4,60 @@ import { useLocation } from "react-router";
 
 import { loginUser } from "../api";
 
+
+/**
+ * Login component for user authentication
+ * Handles form submission and displays messages based on login status.
+ * 
+ * @component
+ * @returns {JSX.Element} The rendered Login component
+ * 
+ */
+
 function Login() {
+  /**
+   * State for managing login form data
+   * @type {{email: string, password: string}}
+   */
   const [loginFormData, setLoginFormData] = React.useState({
     email: "",
     password: "",
   });
 
+  /**
+   * State for tracking submission status
+   * @type {"idle" | "submitting"}
+   */
+  const [status, setStatus] = React.useState("idle");
+
+  /**
+   * State for tracking errors
+   * @type {Error | null}
+   */
+  const [error, setError] = React.useState(null);
+
   const location = useLocation();
 
+  /**
+   * Handles form submission
+   * Calls the loginUser API and updates state accordingly
+   * @param {React.FormEvent<HTMLFormElement>} event - The form submission event 
+   */
   function handleSubmit(event) {
     event.preventDefault();
-    loginUser(loginFormData).then((data) => console.log(data));
+
+    setStatus("submitting");
+    loginUser(loginFormData)
+      .then((data) => {
+        console.log(data);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setStatus("idle");
+      });
 
     setLoginFormData({
       email: "",
@@ -22,6 +65,13 @@ function Login() {
     });
   }
 
+
+  /**
+   * Handles input field changes
+   * Updates the corresponding state value based on user input
+   * 
+   * @param {React.ChangeEvent<HTMLInputElement>} event - The input change event
+   */
   function handleChange(event) {
     const { name, value } = event.target;
     setLoginFormData((prevData) => ({
@@ -29,6 +79,9 @@ function Login() {
       [name]: value,
     }));
   }
+
+
+
   return (
     <article
       className="flex flex-col items-center px-7"
@@ -42,6 +95,11 @@ function Login() {
       <h1 className="text-xl md:text-3xl text-center my-8" id="page-title">
         Sign in to your account!
       </h1>
+      {error?.message && (
+        <h3 className="text-lg md:text-xl font-bold text-center text-red-600">
+          {error.message}
+        </h3>
+      )}
 
       <form className="flex flex-col w-full max-w-lg" onSubmit={handleSubmit}>
         <input
@@ -66,8 +124,9 @@ function Login() {
           className="bg-[#FF8c38] border-none rounded-md h-14 mt-6 text-white hover:cursor-pointer"
           aria-label="Log in to your account"
           aria-live="polite"
+          disabled={status === "submitting"}
         >
-          Log in
+          {status === "submitting" ? "Loging in.." : "Log in"}
         </button>
       </form>
     </article>
