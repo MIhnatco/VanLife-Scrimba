@@ -1,17 +1,16 @@
 import React from "react";
 
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { loginUser } from "../api";
-
 
 /**
  * Login component for user authentication
  * Handles form submission and displays messages based on login status.
- * 
+ *
  * @component
  * @returns {JSX.Element} The rendered Login component
- * 
+ *
  */
 
 function Login() {
@@ -37,11 +36,12 @@ function Login() {
   const [error, setError] = React.useState(null);
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   /**
    * Handles form submission
    * Calls the loginUser API and updates state accordingly
-   * @param {React.FormEvent<HTMLFormElement>} event - The form submission event 
+   * @param {React.FormEvent<HTMLFormElement>} event - The form submission event
    */
   function handleSubmit(event) {
     event.preventDefault();
@@ -49,8 +49,9 @@ function Login() {
     setStatus("submitting");
     loginUser(loginFormData)
       .then((data) => {
-        console.log(data);
         setError(null);
+  
+        navigate("/host");
       })
       .catch((err) => {
         setError(err);
@@ -65,11 +66,10 @@ function Login() {
     });
   }
 
-
   /**
    * Handles input field changes
    * Updates the corresponding state value based on user input
-   * 
+   *
    * @param {React.ChangeEvent<HTMLInputElement>} event - The input change event
    */
   function handleChange(event) {
@@ -79,8 +79,6 @@ function Login() {
       [name]: value,
     }));
   }
-
-
 
   return (
     <article
