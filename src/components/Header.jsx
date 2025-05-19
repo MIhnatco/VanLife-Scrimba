@@ -3,6 +3,10 @@ import { Link, NavLink } from "react-router-dom";
 import avatarUrl from "../assets/images/avatar-icon.png";
 
 function Header() {
+  function fakeLogOut() {
+    localStorage.removeItem("loggedin");
+  }
+
   return (
     <header className="h-28 flex items-center py-2.5 px-8 text-xl">
       <Link
@@ -48,6 +52,13 @@ function Header() {
         <Link to="login">
           <img src={avatarUrl} />
         </Link>
+
+        <button
+          className="font-bold text-2xl mx-4 hover:cursor-pointer"
+          onClick={fakeLogOut}
+        >
+          X
+        </button>
       </nav>
     </header>
   );

@@ -1,9 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom";
 
 function AuthRequired() {
-  const authenticated = true;
+  const isLoggedIn = localStorage.getItem("loggedin");
 
-  if (!authenticated) {
+  if (!isLoggedIn) {
     return (
       <Navigate to="/login" state={{ message: "You must log in first." }} />
     );
