@@ -38,6 +38,8 @@ function Login() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const from = location.state?.from || "/state";
+
   /**
    * Handles form submission
    * Calls the loginUser API and updates state accordingly
@@ -51,7 +53,7 @@ function Login() {
       .then((data) => {
         setError(null);
         localStorage.setItem("loggedin", true);
-        navigate("/host", { replace: true });
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         setError(err);
