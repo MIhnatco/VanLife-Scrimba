@@ -1,10 +1,24 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import avatarUrl from "../assets/images/avatar-icon.png";
 
+/**
+ * Header component for the VanLife application
+ * Displays navigation links and handles user logout
+ *
+ * @returns {JSX.Element} The rendered Header component
+ */
+
 function Header() {
+  const navigate = useNavigate();
+
+  /**
+   * Logs out the user by removing the authentication status from localStorage
+   * and redirects the user to the login page.
+   */
   function fakeLogOut() {
     localStorage.removeItem("loggedin");
+    navigate("/login"); //Redirect to /login
   }
 
   return (
