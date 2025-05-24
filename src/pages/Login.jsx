@@ -38,7 +38,7 @@ function Login() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from || "/state";
+  const from = location.state?.from || "/host";
 
   /**
    * Handles form submission
