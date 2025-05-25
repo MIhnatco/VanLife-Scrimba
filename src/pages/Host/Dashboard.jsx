@@ -96,8 +96,17 @@ function Dashboard() {
           </Link>
         </div>
 
-        {loading && !vans ? (
-          <h1>Loading...</h1>
+        {loading ? (
+          <div aria-live="polite" role="status">
+            <Spinner />
+            <span className="sr-only">
+              Please wait while we fetch your listed vans.
+            </span>
+          </div>
+        ) : error ? (
+          <h1 className="text-2xl text-red-600" aria-live="assertive">
+            There was an error: {error.message}
+          </h1>
         ) : (
           <>{renderVanElements(vans)}</>
         )}
