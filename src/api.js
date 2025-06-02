@@ -1,3 +1,29 @@
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+import {getFirestore} from 'firebase/firestore/lite'
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBYn7DI6NjkVsCkz8Eze4QKGIOE720dVvE",
+  authDomain: "vanlife-da25e.firebaseapp.com",
+  projectId: "vanlife-da25e",
+  storageBucket: "vanlife-da25e.firebasestorage.app",
+  messagingSenderId: "598537993686",
+  appId: "1:598537993686:web:3ee5f2fe8d945a2d08b877"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app)
+
+
+
+
 export async function getVans(id) {
   const url = id ? `/api/vans/${id}` : "/api/vans";
   const res = await fetch(url);
