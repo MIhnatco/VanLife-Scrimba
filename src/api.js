@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-import { collection, getDocs, getFirestore } from "firebase/firestore/lite";
+import { collection, getDocs, getFirestore, doc, getDoc } from "firebase/firestore/lite";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,6 +22,15 @@ const db = getFirestore(app);
 
 const vansCollectionRef = collection(db, "vans");
 
+
+/**
+ * Fetches all vans from the 'vans' collection in Firestore
+ * 
+ * @async
+ * @function getVans 
+ * 
+ * @returns  {Promise<Object>} A promise that resolves to an array of van objects.
+ */
 export async function getVans() {
   const snapshot = await getDocs(vansCollectionRef);
   const vans = snapshot.docs.map((doc) => ({
@@ -30,6 +39,26 @@ export async function getVans() {
   }));
 
   return vans;
+}
+
+
+/**
+ * Fetches a single van by its ID from the 'vans' collection in Firestore
+ * 
+ * @async
+ * @function getVan
+ * 
+ * @param {number} id - The unique identifier of the van 
+ * @returns {Promise<Object>} - A promise that resolves to an object containing the van's data and its 'id' field.
+ */
+export async function getVan(id){
+  const docRef = doc(db, 'vans', id)
+  const snapshot = await getDoc(docRef)
+
+  return {
+    ...snapshot.data(), 
+    id: snapshot.id
+  }
 }
 
 export async function getHostVans(id) {

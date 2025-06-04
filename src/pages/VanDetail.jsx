@@ -3,7 +3,7 @@ import { useParams, Link, useLocation } from "react-router-dom";
 
 import Spinner from "../utils/Spinner";
 
-import { getVans } from "../api";
+import { getVan } from "../api";
 
 function VanDetail() {
   const [van, setVan] = React.useState(null);
@@ -26,7 +26,7 @@ function VanDetail() {
       setLoading(true);
 
       try {
-        const data = await getVans(params.id);
+        const data = await getVan(params.id);
         setVan(data);
       } catch (err) {
         setError(err);
